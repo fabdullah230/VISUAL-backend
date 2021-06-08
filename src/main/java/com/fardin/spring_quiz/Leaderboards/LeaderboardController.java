@@ -20,8 +20,8 @@ public class LeaderboardController {
     @GetMapping
     public String leaderboardsPage(){
         return "these are the links to leaderboard pages: " +
-                "\\allscores for list of all players  | " +
-                "\\{playerId} for specific player score";
+                "/allscores for list of all players  | " +
+                "/{playerId} for specific player score";
     }
 
     @GetMapping(path = "/allscores")

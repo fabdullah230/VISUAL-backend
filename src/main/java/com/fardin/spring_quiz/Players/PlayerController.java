@@ -20,8 +20,8 @@ public class PlayerController {
     @GetMapping
     public String playerPage(){
         return "these are the links to player pages: " +
-                "\\allplayers for list of all players  | " +
-                "\\{playerId} for specific player";
+                "/allplayers for list of all players  | " +
+                "/{playerId} for specific player";
     }
 
     @GetMapping(path = "{playerId}")
