@@ -65,10 +65,10 @@ public class PlayerService {
             throw new IllegalStateException("Null is unacceptable value for name");
         }
 
-
-
         p.setName(name);
-        leaderboardService.updateName(playerId, name);
+        if(leaderboardService.checkSelectedScore(playerId)) {
+            leaderboardService.updateName(playerId, name);
+        }
 
     }
 

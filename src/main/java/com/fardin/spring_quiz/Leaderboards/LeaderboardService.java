@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LeaderboardService {
@@ -39,6 +40,14 @@ public class LeaderboardService {
         return l;
     }
 
+    public boolean checkSelectedScore(Long playerId){
+        Optional<Leaderboard> l = leaderboardRepository.findLeaderboardByPlayerId(playerId);
+        if(l.isPresent()){
+            return true;
+        }
+        return false;
+    }
+
 
 
     @Transactional
@@ -60,7 +69,7 @@ public class LeaderboardService {
 //            throw new IllegalStateException("Score with id " + leaderboardId + " does not exist");
 //        }
 
-        Leaderboard l = leaderboardRepository.findLeaderboardByPlayerId(playerID).orElseThrow(() -> new IllegalStateException("Player with id " + playerID + " doesnt exist"));
+        Leaderboard l = leaderboardRepository.findLeaderboardByPlayerId(playerID).orElseThrow(() -> new IllegalStateException("Player with id " + playerID + " doesnt exist in leaderboards table"));
         if(newName == null){
             throw new IllegalStateException("Null is unacceptable value for newScore");
         }
