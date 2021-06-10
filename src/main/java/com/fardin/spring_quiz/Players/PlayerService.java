@@ -68,8 +68,9 @@ public class PlayerService {
 
 
         p.setName(name);
-        leaderboardService.updateName(playerId, name);
-
+        if(leaderboardService.checkSelectedScore(playerId)) {
+            leaderboardService.updateName(playerId, name);
+        }
     }
 
 
