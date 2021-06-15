@@ -1,6 +1,7 @@
 package com.fardin.spring_quiz.Questions;
 
 import com.fardin.spring_quiz.Players.Player;
+import com.fardin.spring_quiz.QuizQuestionPair.PairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,11 @@ import java.util.List;
 public class QuestionService {
 
     private final QuestionRepository questionRepository;
+    private final PairService pairService;
 
     @Autowired
-    public QuestionService(QuestionRepository questionRepository) {
+    public QuestionService(QuestionRepository questionRepository, PairService pairService) {
+        this.pairService = pairService;
         this.questionRepository = questionRepository;
     }
 
@@ -32,6 +35,7 @@ public class QuestionService {
         }
 
         questionRepository.deleteById(questionId);
+        pairService.deleteQuestionPair(questionId);
     }
 
     public Question getSelectedQuestion(Long questionId){

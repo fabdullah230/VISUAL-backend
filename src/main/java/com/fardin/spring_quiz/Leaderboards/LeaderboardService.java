@@ -52,9 +52,7 @@ public class LeaderboardService {
 
     @Transactional
     public void updateScore(Long playerID, Integer newScore){
-//        if(!leaderboardRepository.findScoreByPlayerId(playerID)){
-//            throw new IllegalStateException("Player with id " + playerID + " does not exist");
-//        }
+
         Leaderboard l = leaderboardRepository.findLeaderboardByPlayerId(playerID).orElseThrow(() -> new IllegalStateException("Player with id " + playerID + " doesnt exist"));
         if(newScore == null){
             throw new IllegalStateException("Null is unacceptable value for newScore");
@@ -65,9 +63,6 @@ public class LeaderboardService {
 
     @Transactional
     public void updateName(Long playerID, String newName){
-//        if(!leaderboardRepository.existsById(leaderboardId)){
-//            throw new IllegalStateException("Score with id " + leaderboardId + " does not exist");
-//        }
 
         Leaderboard l = leaderboardRepository.findLeaderboardByPlayerId(playerID).orElseThrow(() -> new IllegalStateException("Player with id " + playerID + " doesnt exist in leaderboards table"));
         if(newName == null){
