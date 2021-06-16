@@ -39,6 +39,14 @@ public class LeaderboardService {
         Leaderboard l = leaderboardRepository.findLeaderboardByPlayerId(playerId).orElseThrow(() -> new IllegalStateException("Score with id " + playerId + " doesnt exist"));
         return l;
     }
+    
+    public boolean checkSelectedScore(Long playerId){
+        Optional<Leaderboard> l = leaderboardRepository.findLeaderboardByPlayerId(playerId);
+        if(l.isPresent()){
+            return true;
+        }
+        return false;
+    }
 
     public boolean checkSelectedScore(Long playerId){
         Optional<Leaderboard> l = leaderboardRepository.findLeaderboardByPlayerId(playerId);
