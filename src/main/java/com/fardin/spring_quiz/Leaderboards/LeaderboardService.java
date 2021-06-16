@@ -48,16 +48,7 @@ public class LeaderboardService {
         return false;
     }
 
-    public boolean checkSelectedScore(Long playerId){
-        Optional<Leaderboard> l = leaderboardRepository.findLeaderboardByPlayerId(playerId);
-        if(l.isPresent()){
-            return true;
-        }
-        return false;
-    }
-
-
-
+   
     @Transactional
     public void updateScore(Long playerID, Integer newScore){
 
