@@ -86,9 +86,13 @@ public class QuizController {
             throw new IllegalStateException("Pair cannot be created with nonexistent quiz/question");
         }
 
-        else{
-            pairService.addPair(pair);
+        if(pairService.pairExists(quizId, questionId)){
+            throw new IllegalStateException("Pair already exists");
         }
+
+
+        pairService.addPair(pair);
+
 
     }
 

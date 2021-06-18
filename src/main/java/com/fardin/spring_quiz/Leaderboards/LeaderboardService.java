@@ -19,9 +19,17 @@ public class LeaderboardService {
     }
 
     public void addNewScore(Leaderboard leaderboard){
+        List<Leaderboard> leaderboards = leaderboardRepository.findLeaderboardByQuizId(leaderboard.getQuizId());
+        for(Leaderboard l : leaderboards){
+            if(l.getPlayerId().equals(leaderboard.getPlayerId())){
+                throw new IllegalStateException("player already exists in quiz leaderboards");
+            }
+        }
+
         leaderboardRepository.save(leaderboard);
     }
 
+    //method to delete a particular score from quiz leaderboard, but pretty useless therefore not used
     public void deleteScore(Long quizId, Long playerId){
         List<Leaderboard> leaderboard = leaderboardRepository.findLeaderboardByQuizId(quizId);
         for(Leaderboard l : leaderboard){

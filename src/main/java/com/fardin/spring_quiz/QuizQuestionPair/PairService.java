@@ -40,6 +40,15 @@ public class PairService {
 
     }
 
+    public boolean pairExists(Long quizId, Long questionId){
+        for(Pair pair : pairRepository.findByQuizId(quizId)){
+            if(pair.getQuestionId().equals(questionId)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<Pair> getAllWithQuizId(Long quizId){
         return pairRepository.findByQuizId(quizId);
     }
