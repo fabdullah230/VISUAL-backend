@@ -23,12 +23,21 @@ public class Leaderboard {
     private String name;
     private Long playerId;
     private int score;
+    private Long quizId;
 
     public Leaderboard() {
     }
 
-    public Leaderboard(Long id, String name, Long playerId, int score) {
+    public Leaderboard(Long id, String name, Long playerId, int score, Long quizId) {
         this.id = id;
+        this.name = name;
+        this.playerId = playerId;
+        this.score = score;
+        this.quizId = quizId;
+    }
+
+    public Leaderboard(String name, Long playerId, int score, Long quizId) {
+        this.quizId = quizId;
         this.name = name;
         this.playerId = playerId;
         this.score = score;
@@ -48,6 +57,10 @@ public class Leaderboard {
 
     public Long getPlayerId() {
         return playerId;
+    }
+
+    public Long getQuizId() {
+        return quizId;
     }
 
 

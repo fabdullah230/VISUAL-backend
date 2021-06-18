@@ -1,5 +1,6 @@
 package com.fardin.spring_quiz.Players;
 
+import com.fardin.spring_quiz.Leaderboards.Leaderboard;
 import com.fardin.spring_quiz.Leaderboards.LeaderboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,16 @@ public class PlayerService {
         }
 
         playerRepository.deleteById(playerId);
+        //delete all scores in leaderboards with this id
+        leaderboardService.deleteAllWithPlayerId(playerId);
     }
+
+
+    public List<Leaderboard> allScores(Long playerId){
+        return leaderboardService.getAllWithPlayerId(playerId);
+    }
+
+
 
     //return all players
     public List<Player> getAllPlayers(){
@@ -65,8 +75,9 @@ public class PlayerService {
             throw new IllegalStateException("Null is unacceptable value for name");
         }
 
+        //fix this to update name of ALL scores with the Id
         p.setName(name);
-        if(leaderboardService.checkSelectedScore(playerId)) {
+        if(leaderboardService.checkIfPlayerScoreExists(playerId)) {
             leaderboardService.updateName(playerId, name);
         }
 

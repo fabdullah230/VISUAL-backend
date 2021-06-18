@@ -1,6 +1,8 @@
 package com.fardin.spring_quiz.Players;
 
 
+import com.fardin.spring_quiz.Leaderboards.Leaderboard;
+import com.fardin.spring_quiz.Leaderboards.LeaderboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +14,11 @@ public class PlayerController {
 
     private final PlayerService playerService;
 
+
     @Autowired
     public PlayerController(PlayerService playerService) {
         this.playerService = playerService;
+
     }
 
     @GetMapping
@@ -46,8 +50,14 @@ public class PlayerController {
 
     //send raw text from frontend
     @PutMapping(path = "{playerId}")
-    public void updatePlayerName(@PathVariable Long playerId, @RequestBody String name){
+    public void updatePlayerName(@PathVariable("playerId") Long playerId, @RequestBody String name){
         playerService.updatePlayerName(playerId, name);
+    }
+
+    //getmapping to get ALL scores
+    @GetMapping(path = "{playerId}/scores")
+    public List<Leaderboard> playerScores(@PathVariable("playerId") Long playerId){
+        return playerService.allScores(playerId);
     }
 
 

@@ -1,5 +1,7 @@
 package com.fardin.spring_quiz.Quizzes;
 
+import com.fardin.spring_quiz.Leaderboards.Leaderboard;
+import com.fardin.spring_quiz.Leaderboards.LeaderboardService;
 import com.fardin.spring_quiz.Questions.Question;
 import com.fardin.spring_quiz.Questions.QuestionRepository;
 import com.fardin.spring_quiz.Questions.QuestionService;
@@ -17,16 +19,18 @@ public class QuizController {
 
     private final QuizService quizService;
     private final PairService pairService;
+    private final LeaderboardService leaderboardService;
 
     private final QuizRepository quizRepository;
     private final QuestionRepository questionRepository;
 
     @Autowired
-    public QuizController(QuizService quizService, PairService pairService, QuizRepository quizRepository, QuestionRepository questionRepository) {
+    public QuizController(LeaderboardService leaderboardService, QuizService quizService, PairService pairService, QuizRepository quizRepository, QuestionRepository questionRepository) {
         this.quizService = quizService;
         this.pairService = pairService;
         this.questionRepository = questionRepository;
         this.quizRepository = quizRepository;
+        this.leaderboardService = leaderboardService;
     }
 
     @GetMapping
@@ -49,6 +53,11 @@ public class QuizController {
         return quizService.getQuizQuestions(quizId);
     }
 
+    @GetMapping(path = "{quizId}/leaderboards")
+    public List<Leaderboard> getQuizLeaderboards(@PathVariable("quizId") Long quizId){
+        return leaderboardService.getAllWithQuizId(quizId);
+    }
+
     @PostMapping
     public void addQuiz(@RequestBody Quiz quiz){
         quizService.addQuiz(quiz);
@@ -57,6 +66,7 @@ public class QuizController {
     @DeleteMapping(path = "{quizId}")
     public void deleteQuiz(@PathVariable("quizId") Long quizId){
         quizService.deleteQuiz(quizId);
+        leaderboardService.deleteAllWithQuizId(quizId);
     }
 
     @DeleteMapping(path = "{quizId}/{questionId}")
@@ -86,6 +96,18 @@ public class QuizController {
     public void updateQuizTitle(@PathVariable("quizId") Long quizId, @RequestParam(required = false) String title){
         quizService.updateQuizBody(quizId, title);
     }
+
+    @PutMapping(path = "{quizId}/leaderboards/{playerId}")
+    public void updatePlayerScore(@PathVariable("quizId") Long quizId, @PathVariable("playerId") Long playerId, @RequestParam(required = false) int newScore){
+        leaderboardService.updateScore(quizId, playerId, newScore);
+    }
+
+    @GetMapping(path = "{quizId}/leaderboards/{playerId}")
+    public Leaderboard getPlayerScore(@PathVariable("quizId") Long quizId, @PathVariable("playerId") Long playerId){
+       return leaderboardService.getSelectedScore(quizId, playerId);
+    }
+
+
 
 
 

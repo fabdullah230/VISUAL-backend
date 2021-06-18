@@ -22,62 +22,98 @@ public class LeaderboardService {
         leaderboardRepository.save(leaderboard);
     }
 
-    public void deleteScore(Long leaderboardId){
-        if(!leaderboardRepository.existsById(leaderboardId)){
-            throw new IllegalStateException("Score with id " + leaderboardId + " not found");
+    public void deleteScore(Long quizId, Long playerId){
+        List<Leaderboard> leaderboard = leaderboardRepository.findLeaderboardByQuizId(quizId);
+        for(Leaderboard l : leaderboard){
+            if(l.getPlayerId().equals(playerId)){
+                leaderboardRepository.delete(l);
+            }
         }
-
-        leaderboardRepository.deleteById(leaderboardId);
     }
+
+
+    //to be used with deleteplayer
+    public void deleteAllWithPlayerId(Long playerId){
+        List<Leaderboard> leaderboard = leaderboardRepository.findLeaderboardByPlayerId(playerId);
+        for(Leaderboard l : leaderboard){
+            leaderboardRepository.delete(l);
+        }
+    }
+
+    //to be used with delete quiz
+    public void deleteAllWithQuizId(Long quizId){
+        List<Leaderboard> leaderboard = leaderboardRepository.findLeaderboardByPlayerId(quizId);
+        for(Leaderboard l : leaderboard){
+            leaderboardRepository.delete(l);
+        }
+    }
+
+
 
 
     public List<Leaderboard> getAllScores(){
         return leaderboardRepository.findAll();
     }
 
-    public Leaderboard getSelectedScore(Long playerId){
-        Leaderboard l = leaderboardRepository.findLeaderboardByPlayerId(playerId).orElseThrow(() -> new IllegalStateException("Score with id " + playerId + " doesnt exist"));
-        return l;
+    public List<Leaderboard> getAllWithPlayerId(Long playerId){
+        return leaderboardRepository.findLeaderboardByPlayerId(playerId);
+    }
+
+    public List<Leaderboard> getAllWithQuizId(Long quizId){
+        return leaderboardRepository.findLeaderboardByQuizId(quizId);
+    }
+
+
+
+
+    public Leaderboard getSelectedScore(Long quizId, Long playerId){
+        List<Leaderboard> leaderboard = leaderboardRepository.findLeaderboardByQuizId(quizId);
+        for(Leaderboard l : leaderboard){
+            if(l.getPlayerId().equals(playerId)){
+                return l;
+            }
+        }
+        return null;
     }
     
-    public boolean checkSelectedScore(Long playerId){
-        Optional<Leaderboard> l = leaderboardRepository.findLeaderboardByPlayerId(playerId);
-        if(l.isPresent()){
-            return true;
+    public boolean checkIfPlayerScoreExists(Long playerId){
+        List<Leaderboard> l = leaderboardRepository.findLeaderboardByPlayerId(playerId);
+        if(l.isEmpty()){
+            return false;
         }
-        return false;
+        return true;
     }
-
-    public boolean checkSelectedScore(Long playerId){
-        Optional<Leaderboard> l = leaderboardRepository.findLeaderboardByPlayerId(playerId);
-        if(l.isPresent()){
-            return true;
-        }
-        return false;
-    }
-
 
 
     @Transactional
-    public void updateScore(Long playerID, Integer newScore){
+    public void updateScore(Long quizId, Long playerId, Integer newScore){
 
-        Leaderboard l = leaderboardRepository.findLeaderboardByPlayerId(playerID).orElseThrow(() -> new IllegalStateException("Player with id " + playerID + " doesnt exist"));
         if(newScore == null){
             throw new IllegalStateException("Null is unacceptable value for newScore");
         }
 
-        l.setScore(newScore);
+        List<Leaderboard> leaderboard = leaderboardRepository.findLeaderboardByQuizId(quizId);
+
+        for(Leaderboard l : leaderboard){
+            if(l.getPlayerId().equals(playerId)){
+                l.setScore(newScore);
+                break;
+            }
+        }
+
     }
 
     @Transactional
-    public void updateName(Long playerID, String newName){
+    public void updateName(Long playerId, String newName){
 
-        Leaderboard l = leaderboardRepository.findLeaderboardByPlayerId(playerID).orElseThrow(() -> new IllegalStateException("Player with id " + playerID + " doesnt exist in leaderboards table"));
         if(newName == null){
             throw new IllegalStateException("Null is unacceptable value for newScore");
         }
 
-        l.setName(newName);
+        List<Leaderboard> leaderboard = leaderboardRepository.findLeaderboardByPlayerId(playerId);
+        for(Leaderboard l : leaderboard){
+                l.setName(newName);
+        }
 
     }
 
