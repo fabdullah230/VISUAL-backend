@@ -28,7 +28,48 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialec
 spring.jpa.properties.hibernate.format_sql=true
 ```
 
+## Database Schema
+Database has been created using MySQL and Spring Hibernate. The database schema is given below.
+```
+Player {
+  Long id;
+  String name;
+  String email;
+}
+
+Question {
+  Long id;
+  String questionBody;
+  String correctAnswer;
+  String incorrectOne;
+  String incorrectTwo;
+  String incorrectThree;
+}
+
+Quiz {
+  Long id;
+  String title;
+}
+
+Pair {
+  Long id;
+  Long questionId; references -> Question.id;
+  Long quizId; references -> Quiz.id;
+}
+
+Leaderboard {
+  Long id;
+  Long quizId; references -> Quiz.id;
+  Long playerId; references -> Player.id;
+  String name; references -> Player.name
+}
+```
+
 ## REST API routes and requests
 These will be updated as soon as they are finalized.
+
+
+
+
 ## License
 All rights reserved by KEEP (https://keep.edu.hk/)
