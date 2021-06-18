@@ -1,6 +1,6 @@
 # VISUAL backend code
 
-This is a repo for the backend code of the prototype of VISUAL. It is still under development, bur can be run in a local Java IDE (preferably IntellJ).
+This is a repo for the backend code of the prototype of VISUAL. It is still under development, but can be run in a local Java IDE (preferably IntellJ).
 ## Installation
 
 Clone the repo in the local IDE, then run the main application.
