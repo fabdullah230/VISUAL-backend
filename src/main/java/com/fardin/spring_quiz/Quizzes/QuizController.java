@@ -96,6 +96,29 @@ public class QuizController {
 
     }
 
+    @PostMapping(path = "/{quizId}/quickadd")
+    public void addPairQuick(@RequestBody List<Long> list, @PathVariable("quizId") Long quizId){
+        Optional<Quiz> quiz = quizRepository.findById(quizId);
+        if(quiz.isEmpty()){
+            throw new IllegalStateException("Quiz with id " + quizId + " does not exist");
+        }
+
+        for(Long questionId : list){
+            Optional<Question> question = questionRepository.findQuestionById(questionId);
+            if(question.isEmpty()){
+                throw new IllegalStateException("Question with id " + questionId + " does not exist");
+            }
+
+            if(pairService.pairExists(quizId, questionId)){
+                throw new IllegalStateException("Pair already exists");
+            }
+
+            Pair p = new Pair(questionId, quizId);
+            pairService.addPair(p);
+
+        }
+    }
+
     @PutMapping(path = "{quizId}")
     public void updateQuizTitle(@PathVariable("quizId") Long quizId, @RequestParam(required = false) String title){
         quizService.updateQuizBody(quizId, title);

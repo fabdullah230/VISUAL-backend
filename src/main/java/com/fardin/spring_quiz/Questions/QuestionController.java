@@ -21,7 +21,7 @@ public class QuestionController {
     @GetMapping
     public String questionPage(){
         return "these are the links to Question pages: " +
-                "/allquestions for list of all Questions  | " +
+                "/all for list of all Questions  | " +
                 "/{questionId} for specific question";
     }
 
@@ -30,7 +30,7 @@ public class QuestionController {
         return questionService.getSelectedQuestion(questionId);
     }
 
-    @GetMapping(path = "/allquestions")
+    @GetMapping(path = "/all")
     public List<Question> getAllQuestions(){
         return questionService.getAllQuestions();
     }
