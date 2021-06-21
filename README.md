@@ -132,7 +132,7 @@ GET (/pair/quiz/{quizId}) -> details of all the pairs containing quizId (List of
 insert into quiz values(10, "title of the quiz")
 
 //id, email, name
-insert into player VALUES(1, "email@example.com", "StudentName")
+insert into player values(1, "email@example.com", "StudentName")
 
 //id, correct_answer, incorrect_one, incorrect_three, incorrect_two, question_body
 insert into question values(101, "correct answer", "incorrect answer", "incorrect answer", "incorrect answer", "this is the body of the question")
