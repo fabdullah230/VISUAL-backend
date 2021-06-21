@@ -30,7 +30,7 @@ spring.jpa.properties.hibernate.format_sql=true
 
 ## Database Schema
 Database has been created using MySQL and Spring Hibernate. The database schema is given below.
-```
+```java
 Player {
   Long id; (unique)
   String name;
