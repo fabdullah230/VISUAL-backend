@@ -66,7 +66,7 @@ Leaderboard {
 ```
 
 ## REST API routes and requests
-```
+```java
 Player
 
 GET (/player/{playerId}) -> details of player with id = playerId (JSON)
@@ -110,8 +110,19 @@ PUT (/question/{questionId}/corans) -> change the correctAnswer of question with
 PUT (/question/{questionId}/incans) -> change the incorrect answers of the question with id = questionId (form data with keys incorrectOne, incorrectTwo and incorrectThree)
 
 
+Leaderboards
+
+GET (/leaderboards) -> home page
+GET (/leaderboards/all) -> details of all scores (List of JSON)
+
+POST (/leaderboards) -> create new score (JSON with {quizId, playerId, score, name}
 
 
+Pair
+
+GET (/pair) -> details of all quiz question pairs (List of JSON)
+GET (/pair/question/{questionId}) -> details of all the pairs containing questionId (List of JSON)
+GET (/pair/quiz/{quizId}) -> details of all the pairs containing quizId (List of JSON)
 
 ```
 
