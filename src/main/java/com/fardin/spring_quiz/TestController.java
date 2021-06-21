@@ -1,7 +1,7 @@
 package com.fardin.spring_quiz;
 
 
-import com.fardin.spring_quiz.QuizQuestionPair.Pair;
+
 import com.fardin.spring_quiz.QuizQuestionPair.PairRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

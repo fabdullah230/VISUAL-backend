@@ -1,6 +1,5 @@
 package com.fardin.spring_quiz.Questions;
 
-import com.fardin.spring_quiz.Players.Player;
 import com.fardin.spring_quiz.QuizQuestionPair.PairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,9 +38,7 @@ public class QuestionService {
     }
 
     public Question getSelectedQuestion(Long questionId){
-        Question q =  questionRepository.findById(questionId).orElseThrow(() -> new IllegalStateException("question with id " + questionId + " doesnt exist"));
-
-        return q ;
+        return questionRepository.findById(questionId).orElseThrow(() -> new IllegalStateException("question with id " + questionId + " doesnt exist"));
     }
 
     @Transactional

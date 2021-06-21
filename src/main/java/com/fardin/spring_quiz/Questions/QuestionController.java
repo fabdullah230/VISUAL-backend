@@ -1,7 +1,6 @@
 package com.fardin.spring_quiz.Questions;
 
 
-import com.fardin.spring_quiz.Players.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

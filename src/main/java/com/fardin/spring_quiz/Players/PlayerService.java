@@ -60,8 +60,7 @@ public class PlayerService {
 
     //specific player
     public Player getSelectedPlayer(Long playerId){
-        Player p = playerRepository.findById(playerId).orElseThrow(() -> new IllegalStateException("player with id " + playerId + " doesnt exist"));
-        return p;
+        return playerRepository.findById(playerId).orElseThrow(() -> new IllegalStateException("player with id " + playerId + " doesnt exist"));
     }
 
     //update player name

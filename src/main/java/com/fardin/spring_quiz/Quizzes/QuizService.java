@@ -49,9 +49,7 @@ public class QuizService {
     }
 
     public Quiz getQuizDetails(Long quizId){
-        Quiz q = quizRepository.findById(quizId).orElseThrow(() -> new IllegalStateException("quiz with id " + quizId + " does not exist" ));
-
-        return q;
+        return quizRepository.findById(quizId).orElseThrow(() -> new IllegalStateException("quiz with id " + quizId + " does not exist" ));
     }
 
     public List<Question> getQuizQuestions(Long quizId){

@@ -4,7 +4,6 @@ import com.fardin.spring_quiz.Leaderboards.Leaderboard;
 import com.fardin.spring_quiz.Leaderboards.LeaderboardService;
 import com.fardin.spring_quiz.Questions.Question;
 import com.fardin.spring_quiz.Questions.QuestionRepository;
-import com.fardin.spring_quiz.Questions.QuestionService;
 import com.fardin.spring_quiz.QuizQuestionPair.Pair;
 import com.fardin.spring_quiz.QuizQuestionPair.PairService;
 import org.springframework.beans.factory.annotation.Autowired;
