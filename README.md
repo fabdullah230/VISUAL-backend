@@ -126,7 +126,23 @@ GET (/pair/quiz/{quizId}) -> details of all the pairs containing quizId (List of
 
 ```
 
+## SQL queries to manually populate database
+```sql
+//id, quiz
+insert into quiz values(10, "title of the quiz")
 
+//id, email, name
+insert into player VALUES(1, "email@example.com", "StudentName")
+
+//id, correct_answer, incorrect_one, incorrect_three, incorrect_two, question_body
+insert into question values(101, "correct answer", "incorrect answer", "incorrect answer", "incorrect answer", "this is the body of the question")
+
+//id, name, player_id, quiz_id, score
+insert into leaderboard values (999, "StudentName", 1, 10, 100)
+
+//id, question_id, quiz_id
+insert into pair values (1, 101, 10)
+```
 
 
 
