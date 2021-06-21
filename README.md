@@ -32,13 +32,13 @@ spring.jpa.properties.hibernate.format_sql=true
 Database has been created using MySQL and Spring Hibernate. The database schema is given below.
 ```
 Player {
-  Long id;
+  Long id; (unique)
   String name;
-  String email;
+  String email; (unique)
 }
 
 Question {
-  Long id;
+  Long id; (unique)
   String questionBody;
   String correctAnswer;
   String incorrectOne;
@@ -47,18 +47,18 @@ Question {
 }
 
 Quiz {
-  Long id;
+  Long id; (unique)
   String title;
 }
 
 Pair {
-  Long id;
+  Long id; (unique)
   Long questionId; references -> Question.id;
   Long quizId; references -> Quiz.id;
 }
 
 Leaderboard {
-  Long id;
+  Long id; (unique)
   Long quizId; references -> Quiz.id;
   Long playerId; references -> Player.id;
   String name; references -> Player.name
@@ -66,7 +66,66 @@ Leaderboard {
 ```
 
 ## REST API routes and requests
-These will be updated as soon as they are finalized.
+```
+Player
+
+GET (/player/{playerId}) -> details of player with id = playerId (JSON)
+GET (/player/allplayers) -> details of all players (List of JSON)
+GET (/player/{playerId}/scores) -> details of all the scores of the player (List of JSON)
+
+POST (/player) -> create new player (JSON with {name, email})
+
+PUT (/player/{playerId}) -> update the name of player id = playerId (raw String)
+
+DELETE (/player/{playerId}) -> delete player with id = playerId
+
+
+Quiz
+
+GET (/quiz/all) -> details of all quizzes (List of JSON)
+GET (/quiz/{quizId}) -> details of quiz with id = quizId (JSON)
+GET (/quiz/{quizId}/all) -> details of all question associated with quiz with id = quizId (List of JSON)
+GET (/quiz/{quizId}/leaderboards) -> details of all scores associated with quiz with id = quizId (List of JSON)
+GET (/quiz/{quizId}/leaderboards/{playerId}) -> details of the score of player with id = playerId in quiz with id = quizId (JSON)
+
+POST (/quiz) -> create new quiz (JSON with {title})
+POST (/quiz/newpair) -> create new quiz question pair (JSON with {quizId, questionId}) 
+
+PUT (/quiz/{quizId}) -> update title (raw String)
+PUT (/quiz/{quizId}/leaderboards/{playerId}) -> update score of player with id = playerId in quiz with id = quizId
+
+DELETE (/quiz/{quizId}) -> delete quiz with id = quizId
+DELETE (/quiz/{quizId}/{questionId}) -> delete quiz-question pair with quizId and questionId
+
+
+Question
+
+GET (/question/{questionId}) -> details of question with id = questionId (JSON)
+GET (/question/all) -> details of all questions (List of JSON)
+
+POST (/question) -> create new question (JSON with {questionBody, correctAnswer, incorrectOne, incorrectTwo, incorrectThree)
+
+PUT (/question/{questionId}) -> change questionBody of question with id = questionId (raw String)
+PUT (/question/{questionId}/corans) -> change the correctAnswer of question with id = questionId (form data with key correctAnswer)
+PUT (/question/{questionId}/incans) -> change the incorrect answers of the question with id = questionId (form data with keys incorrectOne, incorrectTwo and incorrectThree)
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
