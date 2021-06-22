@@ -35,20 +35,29 @@ Player {
   Long id; (unique)
   String name;
   String email; (unique)
+  Long keepId;
 }
 
 Question {
   Long id; (unique)
+  int timelimit;
   String questionBody;
+  String explaination;
   String correctAnswer;
   String incorrectOne;
   String incorrectTwo;
   String incorrectThree;
+  DateTime createDateTime;
+  DateTime updateDateTime;
+  Long creatorId;
 }
 
 Quiz {
   Long id; (unique)
   String title;
+  DateTime createDateTime;
+  DateTime updateDateTime;
+  Long creatorId;  
 }
 
 Pair {
@@ -59,6 +68,7 @@ Pair {
 
 Leaderboard {
   Long id; (unique)
+  int score;
   Long quizId; references -> Quiz.id;
   Long playerId; references -> Player.id;
   String name; references -> Player.name
