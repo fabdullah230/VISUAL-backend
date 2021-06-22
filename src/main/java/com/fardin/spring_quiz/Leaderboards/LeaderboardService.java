@@ -84,10 +84,8 @@ public class LeaderboardService {
     
     public boolean checkIfPlayerScoreExists(Long playerId){
         List<Leaderboard> l = leaderboardRepository.findLeaderboardByPlayerId(playerId);
-        if(l.isEmpty()){
-            return false;
-        }
-        return true;
+
+        return !l.isEmpty();
     }
 
 

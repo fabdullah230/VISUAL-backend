@@ -22,6 +22,7 @@ public class Player {
     private Long id;
     private String name;
     private String email;
+    private Long keepId;
 
     //sql query to insert is insert into players values (id, "email", "name")
 
@@ -29,15 +30,17 @@ public class Player {
 
     }
 
-    public Player(Long id, String name, String email) {
+    public Player(Long id, String name, String email, Long keepId) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.keepId = keepId;
     }
 
-    public Player(String name, String email) {
+    public Player(String name, String email, Long keepId) {
         this.name = name;
         this.email = email;
+        this.keepId = keepId;
     }
 
     public Long getId() {
@@ -60,6 +63,10 @@ public class Player {
         return email;
     }
 
+    public Long getKeepId() {
+        return keepId;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -70,7 +77,7 @@ public class Player {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", keepId=" + keepId +
                 '}';
     }
-
 }

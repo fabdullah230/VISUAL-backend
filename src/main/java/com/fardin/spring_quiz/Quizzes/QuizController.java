@@ -71,6 +71,14 @@ public class QuizController {
     @DeleteMapping(path = "{quizId}/{questionId}")
     public void deletePair(@PathVariable("quizId") Long quizId, @PathVariable("questionId") Long questionId){
         pairService.deleteSpecificPair(quizId, questionId);
+
+        //force updating quiz to update last modification time
+        Optional<Quiz> quiz = quizRepository.findById(quizId);
+        quiz.ifPresent(quiz1 -> {
+            String temp = quiz1.getTitle();
+            quizService.updateQuizBody(quiz1.getId(),"temp");
+            quizService.updateQuizBody(quiz1.getId(), temp);
+        });
     }
 
     @PostMapping(path = "/newpair")
@@ -89,8 +97,14 @@ public class QuizController {
             throw new IllegalStateException("Pair already exists");
         }
 
-
         pairService.addPair(pair);
+
+        //force updating quiz to update last modification time
+        quiz.ifPresent(quiz1 -> {
+            String temp = quiz1.getTitle();
+            quizService.updateQuizBody(quiz1.getId(),"temp");
+            quizService.updateQuizBody(quiz1.getId(), temp);
+        });
 
 
     }
@@ -114,6 +128,13 @@ public class QuizController {
 
             Pair p = new Pair(questionId, quizId);
             pairService.addPair(p);
+
+            //force updating quiz to update last modification time
+            quiz.ifPresent(quiz1 -> {
+                String temp = quiz1.getTitle();
+                quizService.updateQuizBody(quiz1.getId(),"temp");
+                quizService.updateQuizBody(quiz1.getId(), temp);
+            });
 
         }
     }

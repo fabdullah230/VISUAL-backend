@@ -1,7 +1,11 @@
 package com.fardin.spring_quiz.Quizzes;
 
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -20,6 +24,12 @@ public class Quiz {
 
     private Long id;
     private String title;
+
+    @CreationTimestamp
+    private LocalDateTime createdOn;
+
+    @UpdateTimestamp
+    private LocalDateTime lastUpdatedOn;
 
     public Quiz() {
     }
@@ -50,6 +60,23 @@ public class Quiz {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public LocalDateTime getLastUpdatedOn() {
+        return lastUpdatedOn;
+    }
+
+    public void setLastUpdatedOn(LocalDateTime lastUpdatedOn) {
+        this.lastUpdatedOn = lastUpdatedOn;
+    }
+
 
     @Override
     public String toString() {
