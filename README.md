@@ -35,20 +35,29 @@ Player {
   Long id; (unique)
   String name;
   String email; (unique)
+  Long keepId; work in progress
 }
 
 Question {
   Long id; (unique)
+  int timelimit; work in progress
   String questionBody;
+  String explaination; work in progress
   String correctAnswer;
   String incorrectOne;
   String incorrectTwo;
   String incorrectThree;
+  DateTime createDateTime; work in progress
+  DateTime updateDateTime; work in progress
+  Long creatorId; work in progress
 }
 
 Quiz {
   Long id; (unique)
   String title;
+  DateTime createDateTime; work in progress
+  DateTime updateDateTime; work in progress
+  Long creatorId; work in progress 
 }
 
 Pair {
@@ -59,6 +68,7 @@ Pair {
 
 Leaderboard {
   Long id; (unique)
+  int score;
   Long quizId; references -> Quiz.id;
   Long playerId; references -> Player.id;
   String name; references -> Player.name
@@ -90,9 +100,9 @@ GET (/quiz/{quizId}/leaderboards/{playerId}) -> details of the score of player w
 
 POST (/quiz) -> create new quiz (JSON with {title})
 POST (/quiz/newpair) -> create new quiz question pair (JSON with {quizId, questionId}) 
-POST (/quiz/{quizId}/quickadd) -> for all questionId in the post request, create a pair with quiz with id = quizId (JSON list of questionId, example -> [1, 2, 3])
+POST (/quiz/{quizId}/quickadd) -> for all questionId in the post request, create a new pair with quiz with id = quizId (JSON list of questionId, example -> [1, 2, 3])
 
-PUT (/quiz/{quizId}) -> update title (raw String)
+PUT (/quiz/{quizId}) -> update title (form data with key "title")
 PUT (/quiz/{quizId}/leaderboards/{playerId}) -> update score of player with id = playerId in quiz with id = quizId
 
 DELETE (/quiz/{quizId}) -> delete quiz with id = quizId
