@@ -102,7 +102,7 @@ POST (/quiz) -> create new quiz (JSON with {title})
 POST (/quiz/newpair) -> create new quiz question pair (JSON with {quizId, questionId}) 
 POST (/quiz/{quizId}/quickadd) -> for all questionId in the post request, create a new pair with quiz with id = quizId (JSON list of questionId, example -> [1, 2, 3])
 
-PUT (/quiz/{quizId}) -> update title (raw String)
+PUT (/quiz/{quizId}) -> update title (form data with key "title")
 PUT (/quiz/{quizId}/leaderboards/{playerId}) -> update score of player with id = playerId in quiz with id = quizId
 
 DELETE (/quiz/{quizId}) -> delete quiz with id = quizId
