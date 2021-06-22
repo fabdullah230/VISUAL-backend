@@ -35,29 +35,29 @@ Player {
   Long id; (unique)
   String name;
   String email; (unique)
-  Long keepId;
+  Long keepId; work in progress
 }
 
 Question {
   Long id; (unique)
-  int timelimit;
+  int timelimit; work in progress
   String questionBody;
-  String explaination;
+  String explaination; work in progress
   String correctAnswer;
   String incorrectOne;
   String incorrectTwo;
   String incorrectThree;
-  DateTime createDateTime;
-  DateTime updateDateTime;
-  Long creatorId;
+  DateTime createDateTime; work in progress
+  DateTime updateDateTime; work in progress
+  Long creatorId; work in progress
 }
 
 Quiz {
   Long id; (unique)
   String title;
-  DateTime createDateTime;
-  DateTime updateDateTime;
-  Long creatorId;  
+  DateTime createDateTime; work in progress
+  DateTime updateDateTime; work in progress
+  Long creatorId; work in progress 
 }
 
 Pair {
