@@ -5,16 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "leaderboards")
 public class LeaderboardController {
 
     private final LeaderboardService leaderboardService;
+    private final LeaderboardRepository leaderboardRepository;
 
     @Autowired
-    public LeaderboardController(LeaderboardService leaderboardService) {
+    public LeaderboardController(LeaderboardService leaderboardService, LeaderboardRepository leaderboardRepository) {
         this.leaderboardService = leaderboardService;
+        this.leaderboardRepository = leaderboardRepository;
     }
 
     @GetMapping
@@ -33,6 +36,20 @@ public class LeaderboardController {
 
     @PostMapping
     public void addNewScore(@RequestBody Leaderboard leaderboard){
+
+        //inefficient, but this allows updating the player score if already there thru the POST request
+        List<Leaderboard> byPlayer = leaderboardRepository.findLeaderboardByPlayerId(leaderboard.getPlayerId());
+        List<Leaderboard> byQuiz = leaderboardRepository.findLeaderboardByQuizId(leaderboard.getQuizId());
+
+        for(Leaderboard i : byPlayer){
+            for(Leaderboard j : byQuiz){
+                if(i.getPlayerId().equals(leaderboard.getPlayerId()) && j.getQuizId().equals(leaderboard.getQuizId())){
+                    leaderboardService.updateScore(leaderboard.getQuizId(), leaderboard.getPlayerId(), leaderboard.getScore());
+                    return;
+                }
+            }
+        }
+
          leaderboardService.addNewScore(leaderboard);
     }
 

@@ -30,7 +30,7 @@ public class LeaderboardService {
         List<Leaderboard> leaderboards = leaderboardRepository.findLeaderboardByQuizId(leaderboard.getQuizId());
         for(Leaderboard l : leaderboards){
             if(l.getPlayerId().equals(leaderboard.getPlayerId())){
-                throw new IllegalStateException("player already exists in quiz leaderboards");
+//              throw new IllegalStateException("player already exists in quiz leaderboards");
             }
         }
 
@@ -111,6 +111,7 @@ public class LeaderboardService {
         for(Leaderboard l : leaderboard){
             if(l.getPlayerId().equals(playerId)){
                 l.setScore(newScore);
+                l.setQuestionsAttempted(l.getQuestionsAttempted()+1);
                 break;
             }
         }

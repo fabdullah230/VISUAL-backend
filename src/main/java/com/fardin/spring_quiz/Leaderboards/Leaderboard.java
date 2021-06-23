@@ -24,16 +24,19 @@ public class Leaderboard {
     private Long playerId;
     private int score;
     private Long quizId;
+    //questions attempted
+    private int questionsAttempted = 1;
 
     public Leaderboard() {
     }
 
-    public Leaderboard(Long id, String name, Long playerId, int score, Long quizId) {
+    public Leaderboard(Long id, String name, Long playerId, int score, Long quizId, int questionsAttempted) {
         this.id = id;
         this.name = name;
         this.playerId = playerId;
         this.score = score;
         this.quizId = quizId;
+        this.questionsAttempted = 1;
     }
 
     public Leaderboard(String name, Long playerId, int score, Long quizId) {
@@ -41,6 +44,7 @@ public class Leaderboard {
         this.name = name;
         this.playerId = playerId;
         this.score = score;
+        this.questionsAttempted = 1;
     }
 
     public Long getId() {
@@ -63,7 +67,13 @@ public class Leaderboard {
         return quizId;
     }
 
+    public int getQuestionsAttempted() {
+        return questionsAttempted;
+    }
 
+    public void setQuestionsAttempted(int questionsAttempted) {
+        this.questionsAttempted = questionsAttempted;
+    }
 
     public void setName(String name) {
         this.name = name;
