@@ -1,22 +1,32 @@
 package com.fardin.spring_quiz.Leaderboards;
 
+import com.fardin.spring_quiz.Players.Player;
+import com.fardin.spring_quiz.Players.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LeaderboardService {
 
     private final LeaderboardRepository leaderboardRepository;
+    private final PlayerRepository playerRepository;
 
     @Autowired
-    public LeaderboardService(LeaderboardRepository leaderboardRepository) {
+    public LeaderboardService(LeaderboardRepository leaderboardRepository, PlayerRepository playerRepository) {
         this.leaderboardRepository = leaderboardRepository;
+        this.playerRepository = playerRepository;
     }
 
     public void addNewScore(Leaderboard leaderboard){
+        Optional<Player> player = playerRepository.findPlayerById(leaderboard.getPlayerId());
+        if(player.isEmpty()){
+            throw new IllegalStateException("player with id "+ leaderboard.getPlayerId() + " does not exist");
+        }
+
         List<Leaderboard> leaderboards = leaderboardRepository.findLeaderboardByQuizId(leaderboard.getQuizId());
         for(Leaderboard l : leaderboards){
             if(l.getPlayerId().equals(leaderboard.getPlayerId())){

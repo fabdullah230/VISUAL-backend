@@ -24,6 +24,7 @@ public class Quiz {
 
     private Long id;
     private String title;
+    private Long creatorId;
 
     @CreationTimestamp
     private LocalDateTime createdOn;
@@ -34,13 +35,15 @@ public class Quiz {
     public Quiz() {
     }
 
-    public Quiz(String title) {
+    public Quiz(String title, Long creatorId) {
         this.title = title;
+        this.creatorId = creatorId;
     }
 
-    public Quiz(Long id, String title) {
+    public Quiz(Long id, String title, Long creatorId) {
         this.id = id;
         this.title = title;
+        this.creatorId = creatorId;
     }
 
 
@@ -59,6 +62,14 @@ public class Quiz {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Long getCreatorId() {
+        return creatorId;
+    }
+
+    public void setCreatorId(Long creatorId) {
+        this.creatorId = creatorId;
     }
 
     public LocalDateTime getCreatedOn() {
@@ -83,6 +94,9 @@ public class Quiz {
         return "Quiz{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", creatorId=" + creatorId +
+                ", createdOn=" + createdOn +
+                ", lastUpdatedOn=" + lastUpdatedOn +
                 '}';
     }
 }
