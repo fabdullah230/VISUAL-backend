@@ -4,6 +4,7 @@ package com.fardin.spring_quiz.Leaderboards;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +52,19 @@ public class LeaderboardController {
         }
 
          leaderboardService.addNewScore(leaderboard);
+    }
+
+    @GetMapping(path = "/get/{playerId}")
+    public List<Long> quizDoneByPlayer(@PathVariable("playerId") Long playerId){
+        List<Long> list = new ArrayList<Long>();
+        List<Leaderboard> byPlayer = leaderboardRepository.findLeaderboardByPlayerId(playerId);
+
+        for(Leaderboard l : byPlayer){
+            list.add(l.getQuizId());
+        }
+
+        return list;
+
     }
 
 
