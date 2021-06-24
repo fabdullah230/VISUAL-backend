@@ -127,7 +127,7 @@ GET (/leaderboards) -> home page
 GET (/leaderboards/all) -> details of all scores (List of JSON)
 
 POST (/leaderboards) -> create new score (JSON with {quizId, playerId, score, name}
-
+to be implemented -> api call that returns the quiz IDs of the quizzes that the player attempted
 
 Pair
 
