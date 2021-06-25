@@ -1,6 +1,6 @@
-package com.fardin.spring_quiz.Questions;
+package com.keep.visual.Questions;
 
-import com.fardin.spring_quiz.QuizQuestionPair.PairService;
+import com.keep.visual.QuizQuestionPair.PairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

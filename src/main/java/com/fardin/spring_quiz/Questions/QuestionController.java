@@ -1,4 +1,4 @@
-package com.fardin.spring_quiz.Questions;
+package com.keep.visual.Questions;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

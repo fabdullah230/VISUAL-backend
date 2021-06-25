@@ -1,4 +1,4 @@
-package com.fardin.spring_quiz.QuizQuestionPair;
+package com.keep.visual.QuizQuestionPair;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

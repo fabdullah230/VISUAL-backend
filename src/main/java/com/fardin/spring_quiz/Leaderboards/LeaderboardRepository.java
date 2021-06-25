@@ -1,4 +1,4 @@
-package com.fardin.spring_quiz.Leaderboards;
+package com.keep.visual.Leaderboards;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

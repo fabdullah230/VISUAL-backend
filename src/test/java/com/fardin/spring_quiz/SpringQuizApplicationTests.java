@@ -1,4 +1,4 @@
-package com.fardin.spring_quiz;
+package com.keep.visual;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

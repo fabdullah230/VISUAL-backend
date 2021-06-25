@@ -1,7 +1,7 @@
-package com.fardin.spring_quiz.Leaderboards;
+package com.keep.visual.Leaderboards;
 
-import com.fardin.spring_quiz.Players.Player;
-import com.fardin.spring_quiz.Players.PlayerRepository;
+import com.keep.visual.Players.Player;
+import com.keep.visual.Players.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

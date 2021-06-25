@@ -1,4 +1,4 @@
-package com.fardin.spring_quiz.QuizQuestionPair;
+package com.keep.visual.QuizQuestionPair;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

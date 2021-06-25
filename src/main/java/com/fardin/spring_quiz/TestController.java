@@ -1,8 +1,8 @@
-package com.fardin.spring_quiz;
+package com.keep.visual;
 
 
 
-import com.fardin.spring_quiz.QuizQuestionPair.PairRepository;
+import com.keep.visual.QuizQuestionPair.PairRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
