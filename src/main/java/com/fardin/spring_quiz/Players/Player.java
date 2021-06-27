@@ -1,4 +1,4 @@
-package com.fardin.spring_quiz.Players;
+package com.keep.visual.Players;
 
 
 import javax.persistence.*;

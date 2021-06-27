@@ -1,4 +1,4 @@
-package com.fardin.spring_quiz;
+package com.keep.visual;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

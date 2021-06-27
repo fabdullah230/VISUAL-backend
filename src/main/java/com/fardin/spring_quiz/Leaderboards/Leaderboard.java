@@ -1,4 +1,4 @@
-package com.fardin.spring_quiz.Leaderboards;
+package com.keep.visual.Leaderboards;
 
 
 import javax.persistence.*;

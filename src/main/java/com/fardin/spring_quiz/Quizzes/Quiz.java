@@ -1,4 +1,4 @@
-package com.fardin.spring_quiz.Quizzes;
+package com.keep.visual.Quizzes;
 
 
 import org.hibernate.annotations.CreationTimestamp;

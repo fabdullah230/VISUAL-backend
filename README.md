@@ -69,6 +69,7 @@ Pair {
 Leaderboard {
   Long id; (unique)
   int score;
+  int questionsAttempted
   Long quizId; references -> Quiz.id;
   Long playerId; references -> Player.id;
   String name; references -> Player.name

@@ -1,11 +1,11 @@
-package com.fardin.spring_quiz.Quizzes;
+package com.keep.visual.Quizzes;
 
-import com.fardin.spring_quiz.Leaderboards.Leaderboard;
-import com.fardin.spring_quiz.Leaderboards.LeaderboardService;
-import com.fardin.spring_quiz.Questions.Question;
-import com.fardin.spring_quiz.Questions.QuestionRepository;
-import com.fardin.spring_quiz.QuizQuestionPair.Pair;
-import com.fardin.spring_quiz.QuizQuestionPair.PairService;
+import com.keep.visual.Leaderboards.Leaderboard;
+import com.keep.visual.Leaderboards.LeaderboardService;
+import com.keep.visual.Questions.Question;
+import com.keep.visual.Questions.QuestionRepository;
+import com.keep.visual.QuizQuestionPair.Pair;
+import com.keep.visual.QuizQuestionPair.PairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

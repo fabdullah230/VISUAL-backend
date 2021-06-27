@@ -1,11 +1,14 @@
-package com.fardin.spring_quiz;
+package com.keep.visual;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import org.apache.logging.log4j.LogManager;
 
 @SpringBootApplication
 public class SpringQuizApplication {
@@ -20,6 +23,18 @@ public class SpringQuizApplication {
 		LOGGER.warn("WARN MESSAGE EXAMPLE");
 		LOGGER.error("ERROR MESSAGE EXAMPLE");
 	}
+
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+	   return new WebMvcConfigurerAdapter() {
+		  @Override
+		  public void addCorsMappings(CorsRegistry registry) {
+			 // set to all in DEV, specify allowed url in PROD 
+			 // registry.addMapping("/**").allowedOrigins("http://localhost:8080");
+			 registry.addMapping("/**").allowedOrigins("*");
+		  }
+	   };
+	}//corsConfigurer
 
 }
 
