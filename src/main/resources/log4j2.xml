@@ -22,7 +22,7 @@
     </Appenders>
     <Loggers>
 
-        <Logger name="com.fardin.spring_quiz" additivity="false">
+        <Logger name="com.fardin" additivity="false" level="trace">
             <AppenderRef ref="appLog" />
             <AppenderRef ref="Console" />
         </Logger>

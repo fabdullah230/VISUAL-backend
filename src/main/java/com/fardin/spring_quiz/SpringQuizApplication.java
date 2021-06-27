@@ -10,7 +10,7 @@ import org.apache.logging.log4j.LogManager;
 @SpringBootApplication
 public class SpringQuizApplication {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger("com.fardin.spring_quiz");
+	private static final Logger LOGGER = LoggerFactory.getLogger(SpringQuizApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringQuizApplication.class, args);
